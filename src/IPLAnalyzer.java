@@ -134,4 +134,44 @@ public class IPLAnalyzer{
         }
 
     }
+
+    public static void highestNoOfSixesIn2016(List<Delivery> deliveries, List<Matches> matches){
+        List<Integer> matchIdsOf2016 = new ArrayList<>();
+
+        for(Matches match : matches){
+            if(match.getSeason() == 2016){
+                matchIdsOf2016.add(match.getId());
+            }
+        }
+
+        Map<String, Integer> highestNoOfSixesMap = new HashMap<>();
+
+        for(Delivery delivery : deliveries){
+            if(matchIdsOf2016.contains(delivery.getMatchId())){
+                if(delivery.getBatsmanRun() == 6){
+                    String batsman = delivery.getBatsman();
+
+                    if(highestNoOfSixesMap.containsKey(batsman)){
+                        highestNoOfSixesMap.put(batsman, highestNoOfSixesMap.get(batsman) + 1);
+                    }else{
+                        highestNoOfSixesMap.put(batsman, 1);
+                    }
+                }
+            }
+        }
+        int maxSixes = 0;
+        String sixerKing = "";
+
+        for(String batsmanName : highestNoOfSixesMap.keySet()){
+            int curr = highestNoOfSixesMap.get(batsmanName);
+
+            if(curr > maxSixes){
+                maxSixes = curr;
+                sixerKing = batsmanName;
+            }
+        }
+
+        System.out.println("\n--- Task 5: highest no of Sixes in 2016 ---");
+        System.out.println("Player: " + sixerKing + " with " + maxSixes + " Sixes!");
+    }
 }

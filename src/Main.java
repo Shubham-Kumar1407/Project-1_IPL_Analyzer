@@ -106,5 +106,7 @@ public class Main{
         IPLAnalyzer.findExtraRunsConcededIn2016(matches, deliveries);
 
         IPLAnalyzer.findEconomicalBowlersIn2015(matches, deliveries);
+
+        IPLAnalyzer.highestNoOfSixesIn2016(deliveries, matches);
     }
 }
